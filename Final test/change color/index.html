@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="name_id">I am Javascript Developer</h1>
+  </body>
+  <script>
+    function changecolor() {
+      let color =
+        "#" + (((1 << 24) * Math.random()) | 0).toString(16).padStart(6, "0");
+      let name = document.getElementById("name_id");
+      name.style.backgroundColor = color;
+    }
+
+    setInterval(changecolor, 10000);
+  </script>
+</html>

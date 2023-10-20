@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .box {
+      width: 250px;
+      height: 250px;
+      background-color: cyan;
+      display: inline-flex;
+      margin: 10px;
+    }
+    .box .id1 {
+      margin-top: 0;
+    }
+  </style>
+  <body>
+    <ul id="User"></ul>
+    <!-- <input type="text" id="inputdata" /> -->
+    <!-- <button onclick="myfun()">Add</button> -->
+  </body>
+  <script>
+    function myfun() {
+      let datadetails = JSON.parse(localStorage.getItem("user"));
+
+      let usertext = document.getElementById("inputdata").value;
+      if (usertext != "") {
+        datadetails.push(usertext);
+        // mydata();
+      }
+    }
+    async function mydata() {
+      let response = await fetch("https://jsonplaceholder.typicode.com/todos");
+      let data = await response.json();
+      localStorage.setItem("user", JSON.stringify(data));
+
+      data.map((item, index) => {
+        let userdeails = document.getElementById("User");
+        let li = document.createElement("li");
+        li.className = "box";
+        let User_id = document.createElement("p");
+        User_id.className = "id1";
+        let User_name = document.createElement("h2");
+
+        User_id.innerHTML = `${item.id}`;
+        User_name.innerHTML = ` ${item.title}`;
+
+        li.appendChild(User_id);
+        li.appendChild(User_name);
+        userdeails.appendChild(li);
+      });
+    }
+    mydata();
+  </script>
+</html>
